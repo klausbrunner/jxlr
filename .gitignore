@@ -59,6 +59,7 @@ src/*.so
 src/*.dll
 src/*.dylib
 src/*.a
+src/symbols.rds
 
 # R CMD check build artifacts
 ..Rcheck/

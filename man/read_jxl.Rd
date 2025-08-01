@@ -22,7 +22,7 @@ Read JPEG XL images into a bitmap array using the same conventions as the
 }
 \examples{
 \donttest{
-img <- array(runif(10*10*3), dim = c(10, 10, 3))
+img <- array(runif(10 * 10 * 3), dim = c(10, 10, 3))
 
 jxl_data <- write_jxl(img, quality = 80)
 
