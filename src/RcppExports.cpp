@@ -6,66 +6,107 @@
 using namespace Rcpp;
 
 #ifdef RCPP_USE_GLOBAL_ROSTREAM
-Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<true>& Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // jxl_info
 List jxl_info(const std::string& filename);
 RcppExport SEXP _jxlr_jxl_info(SEXP filenameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
-    rcpp_result_gen = Rcpp::wrap(jxl_info(filename));
-    return rcpp_result_gen;
-END_RCPP
+  BEGIN_RCPP
+  Rcpp::RObject rcpp_result_gen;
+  Rcpp::RNGScope rcpp_rngScope_gen;
+  Rcpp::traits::input_parameter<const std::string&>::type filename(
+      filenameSEXP);
+  rcpp_result_gen = Rcpp::wrap(jxl_info(filename));
+  return rcpp_result_gen;
+  END_RCPP
 }
 // jxl_get_info_raw
 IntegerVector jxl_get_info_raw(const RawVector& buf);
 RcppExport SEXP _jxlr_jxl_get_info_raw(SEXP bufSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const RawVector& >::type buf(bufSEXP);
-    rcpp_result_gen = Rcpp::wrap(jxl_get_info_raw(buf));
-    return rcpp_result_gen;
-END_RCPP
+  BEGIN_RCPP
+  Rcpp::RObject rcpp_result_gen;
+  Rcpp::RNGScope rcpp_rngScope_gen;
+  Rcpp::traits::input_parameter<const RawVector&>::type buf(bufSEXP);
+  rcpp_result_gen = Rcpp::wrap(jxl_get_info_raw(buf));
+  return rcpp_result_gen;
+  END_RCPP
 }
 // jxl_decode_raw
 RawVector jxl_decode_raw(const RawVector& buf);
 RcppExport SEXP _jxlr_jxl_decode_raw(SEXP bufSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const RawVector& >::type buf(bufSEXP);
-    rcpp_result_gen = Rcpp::wrap(jxl_decode_raw(buf));
-    return rcpp_result_gen;
-END_RCPP
+  BEGIN_RCPP
+  Rcpp::RObject rcpp_result_gen;
+  Rcpp::RNGScope rcpp_rngScope_gen;
+  Rcpp::traits::input_parameter<const RawVector&>::type buf(bufSEXP);
+  rcpp_result_gen = Rcpp::wrap(jxl_decode_raw(buf));
+  return rcpp_result_gen;
+  END_RCPP
 }
 // jxl_encode_raw
-RawVector jxl_encode_raw(const RawVector& img, const IntegerVector& quality, const IntegerVector& effort);
-RcppExport SEXP _jxlr_jxl_encode_raw(SEXP imgSEXP, SEXP qualitySEXP, SEXP effortSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const RawVector& >::type img(imgSEXP);
-    Rcpp::traits::input_parameter< const IntegerVector& >::type quality(qualitySEXP);
-    Rcpp::traits::input_parameter< const IntegerVector& >::type effort(effortSEXP);
-    rcpp_result_gen = Rcpp::wrap(jxl_encode_raw(img, quality, effort));
-    return rcpp_result_gen;
-END_RCPP
+RawVector jxl_encode_raw(const RawVector& img, const IntegerVector& quality,
+                         const IntegerVector& effort);
+RcppExport SEXP _jxlr_jxl_encode_raw(SEXP imgSEXP, SEXP qualitySEXP,
+                                     SEXP effortSEXP) {
+  BEGIN_RCPP
+  Rcpp::RObject rcpp_result_gen;
+  Rcpp::RNGScope rcpp_rngScope_gen;
+  Rcpp::traits::input_parameter<const RawVector&>::type img(imgSEXP);
+  Rcpp::traits::input_parameter<const IntegerVector&>::type quality(
+      qualitySEXP);
+  Rcpp::traits::input_parameter<const IntegerVector&>::type effort(effortSEXP);
+  rcpp_result_gen = Rcpp::wrap(jxl_encode_raw(img, quality, effort));
+  return rcpp_result_gen;
+  END_RCPP
+}
+// jxl_decode_anim_raw
+List jxl_decode_anim_raw(const RawVector& buf);
+RcppExport SEXP _jxlr_jxl_decode_anim_raw(SEXP bufSEXP) {
+  BEGIN_RCPP
+  Rcpp::RObject rcpp_result_gen;
+  Rcpp::RNGScope rcpp_rngScope_gen;
+  Rcpp::traits::input_parameter<const RawVector&>::type buf(bufSEXP);
+  rcpp_result_gen = Rcpp::wrap(jxl_decode_anim_raw(buf));
+  return rcpp_result_gen;
+  END_RCPP
+}
+// jxl_encode_anim_raw
+RawVector jxl_encode_anim_raw(const List& frames,
+                              const IntegerVector& durations,
+                              const IntegerVector& quality,
+                              const IntegerVector& effort,
+                              const IntegerVector& loop_count);
+RcppExport SEXP _jxlr_jxl_encode_anim_raw(SEXP framesSEXP, SEXP durationsSEXP,
+                                          SEXP qualitySEXP, SEXP effortSEXP,
+                                          SEXP loop_countSEXP) {
+  BEGIN_RCPP
+  Rcpp::RObject rcpp_result_gen;
+  Rcpp::RNGScope rcpp_rngScope_gen;
+  Rcpp::traits::input_parameter<const List&>::type frames(framesSEXP);
+  Rcpp::traits::input_parameter<const IntegerVector&>::type durations(
+      durationsSEXP);
+  Rcpp::traits::input_parameter<const IntegerVector&>::type quality(
+      qualitySEXP);
+  Rcpp::traits::input_parameter<const IntegerVector&>::type effort(effortSEXP);
+  Rcpp::traits::input_parameter<const IntegerVector&>::type loop_count(
+      loop_countSEXP);
+  rcpp_result_gen = Rcpp::wrap(
+      jxl_encode_anim_raw(frames, durations, quality, effort, loop_count));
+  return rcpp_result_gen;
+  END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_jxlr_jxl_info", (DL_FUNC) &_jxlr_jxl_info, 1},
-    {"_jxlr_jxl_get_info_raw", (DL_FUNC) &_jxlr_jxl_get_info_raw, 1},
-    {"_jxlr_jxl_decode_raw", (DL_FUNC) &_jxlr_jxl_decode_raw, 1},
-    {"_jxlr_jxl_encode_raw", (DL_FUNC) &_jxlr_jxl_encode_raw, 3},
-    {NULL, NULL, 0}
-};
+    {"_jxlr_jxl_info", (DL_FUNC)&_jxlr_jxl_info, 1},
+    {"_jxlr_jxl_get_info_raw", (DL_FUNC)&_jxlr_jxl_get_info_raw, 1},
+    {"_jxlr_jxl_decode_raw", (DL_FUNC)&_jxlr_jxl_decode_raw, 1},
+    {"_jxlr_jxl_encode_raw", (DL_FUNC)&_jxlr_jxl_encode_raw, 3},
+    {"_jxlr_jxl_decode_anim_raw", (DL_FUNC)&_jxlr_jxl_decode_anim_raw, 1},
+    {"_jxlr_jxl_encode_anim_raw", (DL_FUNC)&_jxlr_jxl_encode_anim_raw, 5},
+    {NULL, NULL, 0}};
 
-RcppExport void R_init_jxlr(DllInfo *dll) {
-    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
-    R_useDynamicSymbols(dll, FALSE);
+RcppExport void R_init_jxlr(DllInfo* dll) {
+  R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+  R_useDynamicSymbols(dll, FALSE);
 }

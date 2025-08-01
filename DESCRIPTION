@@ -1,10 +1,10 @@
 Package: jxlr
 Type: Package
 Title: JPEG XL Image Format Support for R
-Version: 0.1.0
+Version: 0.1.1.9000
 Author: Klaus Brunner <klaus.brunner@gmail.com>
 Maintainer: Klaus Brunner <klaus.brunner@gmail.com>
-Authors@R: c(person("Klaus", "Brunner", role = c("aut", "cre"), email = "klaus.brunner@gmail.com"))
+Authors@R: c(person("Klaus", "Brunner", role = c("aut", "cre"), email = "klaus.brunner@gmail.com", comment = c(ORCID = "0009-0006-1459-8818")))
 Description: Provides functions to read, write, and manipulate JPEG XL (JXL) 
     image files in R. JPEG XL is a modern image format that offers superior 
     compression efficiency and quality compared to traditional formats while 
@@ -18,13 +18,15 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: 
-    R (>= 4.0.0)
+    R (>= 4.1.0)
 Imports:
-    Rcpp (>= 1.0.0)
+    Rcpp (>= 1.0.0),
+    utils
 LinkingTo: 
     Rcpp
 Suggests: 
     testthat (>= 3.0.0),
     png,
-    jpeg
-SystemRequirements: C++17, libjxl (>= 0.7.0), pkg-config
+    jpeg,
+    styler
+SystemRequirements: C++17, libjxl (>= 0.7.0)

@@ -17,3 +17,11 @@ R_jxl_encode <- function(img, quality, effort) {
     .Call(`_jxlr_jxl_encode_raw`, img, quality, effort)
 }
 
+R_jxl_decode_anim <- function(buf) {
+    .Call(`_jxlr_jxl_decode_anim_raw`, buf)
+}
+
+R_jxl_encode_anim <- function(frames, durations, quality, effort, loop_count) {
+    .Call(`_jxlr_jxl_encode_anim_raw`, frames, durations, quality, effort, loop_count)
+}
+
