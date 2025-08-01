@@ -1,0 +1,5 @@
+useDynLib(jxlr, .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+export(jxl_info)
+export(read_jxl)
+export(write_jxl)

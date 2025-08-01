@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# Configure script for jxlr package
+# Detects libjxl installation and sets up Makevars
+
+MIN_VERSION="0.7.0"
+
+echo "Checking for libjxl (>= $MIN_VERSION)..."
+
+# Try to use pkg-config to find libjxl
+if pkg-config --exists libjxl 2>/dev/null; then
+    # Check version requirement
+    if pkg-config --atleast-version=$MIN_VERSION libjxl 2>/dev/null; then
+        VERSION=$(pkg-config --modversion libjxl 2>/dev/null || echo "unknown")
+        echo "Found libjxl $VERSION via pkg-config"
+        CPPFLAGS=$(pkg-config --cflags libjxl)
+
+        # Try to get threading libs
+        if pkg-config --exists libjxl_threads 2>/dev/null; then
+            LIBS=$(pkg-config --libs libjxl libjxl_threads)
+            echo "Found libjxl with threading support"
+        else
+            LIBS=$(pkg-config --libs libjxl)
+            LIBS="$LIBS -ljxl_threads"
+            echo "Found libjxl, adding threading library manually"
+        fi
+    else
+        FOUND_VERSION=$(pkg-config --modversion libjxl 2>/dev/null || echo "unknown")
+        echo "Error: libjxl version $FOUND_VERSION is too old (need >= $MIN_VERSION)"
+        echo "Please update your libjxl installation"
+        exit 1
+    fi
+else
+    echo "Warning: pkg-config not found or libjxl not available via pkg-config"
+    echo "Using default settings - compilation may fail if libjxl is not properly installed"
+    echo "Please ensure libjxl >= $MIN_VERSION is installed on your system"
+    CPPFLAGS=""
+    LIBS="-ljxl -ljxl_threads"
+fi
+
+# Create src/Makevars with the detected settings
+cat > src/Makevars << EOF
+CXX_STD = CXX17
+
+PKG_CPPFLAGS = -I. -DRCPP_USE_GLOBAL_ROSTREAM $CPPFLAGS
+PKG_LIBS = $LIBS
+EOF
+
+echo "Created src/Makevars with:"
+echo "  CPPFLAGS: $CPPFLAGS"
+echo "  LIBS: $LIBS"
+echo "Configuration complete."

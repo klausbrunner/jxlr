@@ -1,0 +1,8 @@
+CXX_STD = CXX17
+
+PKG_CPPFLAGS = -I. -DRCPP_USE_GLOBAL_ROSTREAM
+PKG_LIBS = -ljxl -ljxl_threads
+
+# Windows-specific configuration
+# Users will need to install libjxl development libraries
+# or we can provide pre-compiled binaries in the future
