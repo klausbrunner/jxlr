@@ -56,12 +56,40 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// jxl_decode_anim_raw
+List jxl_decode_anim_raw(const RawVector& buf);
+RcppExport SEXP _jxlr_jxl_decode_anim_raw(SEXP bufSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const RawVector& >::type buf(bufSEXP);
+    rcpp_result_gen = Rcpp::wrap(jxl_decode_anim_raw(buf));
+    return rcpp_result_gen;
+END_RCPP
+}
+// jxl_encode_anim_raw
+RawVector jxl_encode_anim_raw(const List& frames, const IntegerVector& durations, const IntegerVector& quality, const IntegerVector& effort, const IntegerVector& loop_count);
+RcppExport SEXP _jxlr_jxl_encode_anim_raw(SEXP framesSEXP, SEXP durationsSEXP, SEXP qualitySEXP, SEXP effortSEXP, SEXP loop_countSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const List& >::type frames(framesSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type durations(durationsSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type quality(qualitySEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type effort(effortSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type loop_count(loop_countSEXP);
+    rcpp_result_gen = Rcpp::wrap(jxl_encode_anim_raw(frames, durations, quality, effort, loop_count));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_jxlr_jxl_info", (DL_FUNC) &_jxlr_jxl_info, 1},
     {"_jxlr_jxl_get_info_raw", (DL_FUNC) &_jxlr_jxl_get_info_raw, 1},
     {"_jxlr_jxl_decode_raw", (DL_FUNC) &_jxlr_jxl_decode_raw, 1},
     {"_jxlr_jxl_encode_raw", (DL_FUNC) &_jxlr_jxl_encode_raw, 3},
+    {"_jxlr_jxl_decode_anim_raw", (DL_FUNC) &_jxlr_jxl_decode_anim_raw, 1},
+    {"_jxlr_jxl_encode_anim_raw", (DL_FUNC) &_jxlr_jxl_encode_anim_raw, 5},
     {NULL, NULL, 0}
 };
 

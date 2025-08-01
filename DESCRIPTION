@@ -26,5 +26,6 @@ LinkingTo:
 Suggests: 
     testthat (>= 3.0.0),
     png,
-    jpeg
+    jpeg,
+    raster
 SystemRequirements: C++17, libjxl (>= 0.7.0), pkg-config

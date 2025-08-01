@@ -16,12 +16,21 @@ remotes::install_github("klausbrunner/jxlr")
 ```r
 library(jxlr)
 
-# Read JXL image
+# Read/write images
 img <- read_jxl("image.jxl")
+write_jxl(img, "output.jxl", quality = 90, effort = 7)
 
-# Write with quality control
-write_jxl(img, "output.jxl", quality = 90)  # lossy
-write_jxl(img, "output.jxl", quality = NA)  # lossless
+# Animations
+frames <- list(img1, img2, img3)
+write_jxl_anim(frames, "anim.jxl", durations = c(200, 300, 250))
+anim <- read_jxl_anim("anim.jxl")
+
+# Format conversion helpers
+write_jxl_as(img_hwc, format = "hwc")  # Height×Width×Channels input
+img_hwc <- read_jxl_as("image.jxl", format = "hwc")
+
+# Save plots directly
+plot_to_jxl("plot.jxl", plot(mtcars$mpg, mtcars$wt))
 
 # Get image info
 info <- jxl_info("image.jxl")
@@ -47,5 +56,7 @@ sudo apt install libjxl-dev
 
 - RGB/RGBA support
 - lossy and lossless compression
+- multi-frame animations with timing control
+- format conversion helpers (HWC/WHC/raster)
 - compatible with png/jpeg package formats
 - file and raw vector I/O
